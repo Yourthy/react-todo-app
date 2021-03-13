@@ -1,21 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 //importing components
 import Form from './components/Form';
 import TodoList from './components/TodoList';
 
 function App() {
+  //state stuff
   const [inputText, setInputText] = useState('');
   const [todos, setTodos] = useState([]);
-  // console.log("app todos", todos);
+  const [status, setStatus] = useState('all');
+  const [filteredTodos, setFilteredTodos] = useState([]);
+
+  //run once when app starts
+  useEffect(()=>{
+    getLocalTodos();
+  }, []);
+
+
+  //useEffect
+  useEffect(()=>{
+    filterHandler();
+    saveLocalTodos();
+  }, [todos, status]);
+
+
+  //Functions
+  const filterHandler =()=>{
+    switch(status){
+      case 'completed':
+          setFilteredTodos(todos.filter(todo => todo.completed === true));
+        break;
+
+      case 'uncompleted':
+        setFilteredTodos(todos.filter(todo => todo.completed === false));
+        break;
+      
+      default:
+        setFilteredTodos(todos);
+        break;
+    }
+  };
+
+  //pushing todos to local storage
+  const saveLocalTodos = () =>  {
+      localStorage.setItem('todos', JSON.stringify(todos));
+  }
+
+  //checking if we have a todo or if we don't
+  const getLocalTodos = () =>  {
+    if(localStorage.getItem('todos') === null){
+      localStorage.setItem('todos', JSON.stringify([]));
+    }else{
+      let todoLocal = JSON.parse(localStorage.getItem('todos'));
+      setTodos(todoLocal);
+    }
+  }
   
   return (
     <div className="App">
       <header>
         <h1>Chris' Todo List</h1>
       </header>
-      <Form todos={todos} setTodos={setTodos} inputText={inputText} setInputText={setInputText}/>
-      <TodoList todos={todos} setTodos={setTodos}/>
+      <Form setStatus={setStatus} todos={todos} setTodos={setTodos} inputText={inputText} setInputText={setInputText} />
+      <TodoList todos={todos} setTodos={setTodos} filteredTodos={filteredTodos}/>
     </div>
   );
 }
