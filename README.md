@@ -7,7 +7,7 @@ Chris' todo app is a simple, single-page Todo builder.
 
 ### Screenshots of tweets
 
-!["Screenshot of TWEETER page"](/Users/christopheryourth/WebDevWork/Mar21/todo/docs/Screen Shot 2021-03-15 at 12.20.50 PM.png)
+!["Screenshot of Chris' Todo"](https://github.com/Yourthy/react-todo-app/blob/master/docs/Screen%20Shot%202021-03-15%20at%2012.20.50%20PM.png?raw=true)
 <!-- !["Screenshot of TWEETER page with validation error (nothing entered into text area"](https://github.com/Yourthy/tweeter/blob/master/docs/tweet-box2.png)
 !["Screenshot of TWEETER page with validation error (number of characters was more than 140"](https://github.com/Yourthy/tweeter/blob/master/docs/tweet-box3.png)
 !["Screenshot of TWEETER page smaller width view](https://github.com/Yourthy/tweeter/blob/master/docs/tweet-box4.png) -->
